@@ -509,7 +509,7 @@ bool Tas58xxComponent::set_eq_preset(Channels channel, uint8_t select_preset) {
   const AddressSequence* biquad1_address = (channel == LEFT_CHANNEL) ? &TAS5805M_LEFT_EQ_ADDRESS[0] : &TAS5805M_RIGHT_EQ_ADDRESS[0];
   const AddressSequence* biquad2_address = (channel == LEFT_CHANNEL) ? &TAS5805M_LEFT_EQ_ADDRESS[1] : &TAS5805M_RIGHT_EQ_ADDRESS[1];
   const AddressSequence* biquad3_address = (channel == LEFT_CHANNEL) ? &TAS5805M_LEFT_EQ_ADDRESS[2] : &TAS5805M_RIGHT_EQ_ADDRESS[2];
-#ifdef USE_TAS5815_DAC
+#elif USE_TAS5815_DAC
   const AddressSequence* biquad1_address = (channel == LEFT_CHANNEL) ? &TAS5815_LEFT_EQ_ADDRESS[0] : &TAS5815_RIGHT_EQ_ADDRESS[0];
   const AddressSequence* biquad2_address = (channel == LEFT_CHANNEL) ? &TAS5815_LEFT_EQ_ADDRESS[1] : &TAS5815_RIGHT_EQ_ADDRESS[1];
   const AddressSequence* biquad3_address = (channel == LEFT_CHANNEL) ? &TAS5815_LEFT_EQ_ADDRESS[2] : &TAS5815_RIGHT_EQ_ADDRESS[2];
