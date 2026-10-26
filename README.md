@@ -1,4 +1,4 @@
-# ESPHome tas58xx component for audio boards by Sonocotta with TAS5805M or TAS5825M Audio DAC
+# ESPHome tas58xx component for audio boards with TAS5805M, TAS5815 or TAS5825M Audio DAC
 This ESPHome external component is based on work by Andriy Malyshenko at
 https://github.com/sonocotta which is licenced under GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007.
 Information from his repositories has also been used/reproduced in this read.me to provide
@@ -20,7 +20,7 @@ This component uses the Esphome ESP_IDF framwork and must be configured accordin
 While this component works with board having ESP32, the ESP32-S3
 has larger PSRAM and hence has better performance than the ESP32.
 
-The component allows many features of the TAS5805m or TAS5825M DAC to be configured
+The component allows many features of the TAS5805m, TAS5815 or TAS5825M DAC to be configured
 prior to firmware generation or configured/controlled through Homeassistant.
 Fault sensors can also be configured, so their status is visible in Homeassistant.
 
@@ -58,7 +58,7 @@ YAML configuration includes:
 - 12 optional Binary Sensors corresonding to DAC fault codes (all optional)
 - an optional Sensor providing the number of times a DAC fault was detected and DAC fault cleared
 
-# TAS5805M and TAS5825M Features
+# TAS5805M, TAS5815 and TAS5825M Features
 ## Analog Gain and Digital Volume
 The analog gain setting ensures that the output signal is not clipped at different supply voltage levels.
 With analog gain set at the appropriate level, the digital volume
@@ -254,7 +254,7 @@ audio_dac:
     update_interval: 1s
 ```
 Configuration variables:
-- **tas85xx_dac:** (*Required*): valid values TAS5805M or TAS5825M. Defaults to TAS5805M
+- **tas85xx_dac:** (*Required*): valid values TAS5805M, TAS5815 or TAS5825M. Defaults to TAS5805M
 
 - **enable_pin:** (*Required*): GPIOxx, enable pin
 

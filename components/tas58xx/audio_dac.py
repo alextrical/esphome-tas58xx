@@ -45,6 +45,7 @@ EQ_PRESETS = 3
 
 # i2c addresses of dac models
 TAS5805M_I2C_ADDR = 0x2D
+TAS5815_I2C_ADDR = 0x54
 TAS5825M_I2C_ADDR = 0x4C
 
 tas58xx_ns = cg.esphome_ns.namespace("tas58xx")
@@ -59,6 +60,7 @@ EQ_REFRESH_MODES = {
 TasDac = tas58xx_ns.enum("TasDac")
 TAS_DACS = {
     "TAS5805M" : TasDac.TAS5805M,
+    "TAS5815" : TasDac.TAS5815,
     "TAS5825M" : TasDac.TAS5825M,
 }
 
@@ -181,6 +183,8 @@ async def to_code(config):
     tas58xx_dac = config.get(CONF_TAS58XX_DAC)
     if tas58xx_dac == "TAS5825M":
         config[CONF_ADDRESS] = TAS5825M_I2C_ADDR
+    elif tas58xx_dac == "TAS5815":
+        config[CONF_ADDRESS] = TAS5815_I2C_ADDR
 
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
@@ -202,5 +206,7 @@ async def to_code(config):
 
     if tas58xx_dac == "TAS5805M":
         cg.add_define("USE_TAS5805M_DAC")
+    elif tas58xx_dac == "TAS5815":
+        cg.add_define("USE_TAS5815_DAC")
     else:
         cg.add_define("USE_TAS5825M_DAC")
