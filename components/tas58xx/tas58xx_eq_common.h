@@ -42,11 +42,11 @@ enum MixerMode : uint8_t {
 };
 
 static constexpr uint8_t NUMBER_CHANNELS = 2;
-#ifdef USE_TAS5815_DAC
-static constexpr uint8_t NUMBER_EQ_BANDS = 14;
-#else
+// #ifdef USE_TAS5815_DAC
+// static constexpr uint8_t NUMBER_EQ_BANDS = 14;
+// #else
 static constexpr uint8_t NUMBER_EQ_BANDS = 15;
-#endif
+// #endif
 static constexpr uint8_t NUMBER_EQ_MODES = 4;
 
 static constexpr const char* EQ_MODE_TEXT[NUMBER_EQ_MODES]   = {"Off", "EQ 15 Band", "EQ BIAMP 15 Band", "EQ Presets"};
@@ -186,6 +186,7 @@ struct AddressSequence {
 	    { 0x25, 0x7c }, // BQ12 Left - Frequency: 3150 Hz
 	    { 0x26, 0x18 }, // BQ13 Left - Frequency: 5000 Hz
 	    { 0x26, 0x2c }, // BQ14 Left - Frequency: 8000 Hz
+	    { 0x26, 0x40 }, // BQ15 Left - Frequency: 16000 Hz
   };
   static constexpr AddressSequence TAS5815_RIGHT_EQ_ADDRESS[NUMBER_EQ_BANDS] = {
 	    { 0x26, 0x54 }, // BQ1 Right  - Frequency: 20 Hz
@@ -202,6 +203,7 @@ struct AddressSequence {
 	    { 0x28, 0x40 }, // BQ12 Right - Frequency: 3150 Hz
 	    { 0x28, 0x54 }, // BQ13 Right - Frequency: 5000 Hz
 	    { 0x28, 0x68 }, // BQ14 Right - Frequency: 8000 Hz
+	    { 0x28, 0x7c }, // BQ15 Right - Frequency: 16000 Hz
   };
 
 #else
