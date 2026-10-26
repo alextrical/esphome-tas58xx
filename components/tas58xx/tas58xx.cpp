@@ -739,7 +739,7 @@ bool Tas58xxComponent::set_eq_mode_(EqMode new_mode) {
     ESP_LOGW(TAG, "%s writing Eq Mode: %s", ERROR, EQ_MODE_TEXT[new_mode]);
     return false;
   }
-#ifdef USE_TAS5815_DAC
+#elif USE_TAS5815_DAC
   if (!this->tas58xx_write_byte_(TAS5815_DSP_MISC, TAS5815_CTRL_EQ[new_mode])) { //??
     ESP_LOGW(TAG, "%s writing Eq Mode: %s", ERROR, EQ_MODE_TEXT[new_mode]);
     return false;
