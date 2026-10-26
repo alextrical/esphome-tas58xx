@@ -74,7 +74,7 @@ static constexpr uint8_t TAS58XX_EQ_CTRL_BOOK = 0xAA;
 #ifdef USE_TAS5805M_DAC
 static constexpr uint8_t TAS5805M_DSP_MISC = 0x66;
 static constexpr uint8_t TAS5805M_CTRL_EQ[NUMBER_EQ_MODES] = {0b0111, 0b0110, 0b1110, 0b1110};
-#elif USE_TAS5815_DAC
+#elif defined(USE_TAS5815_DAC)
 static constexpr uint8_t TAS5815_DSP_MISC = 0x66;
 static constexpr uint8_t TAS5815_CTRL_EQ[NUMBER_EQ_MODES] = {0b0111, 0b0110, 0b1110, 0b1110};
 #else
@@ -108,7 +108,7 @@ static constexpr uint8_t TAS58XX_MIXER_GAIN_PAGE = 0x29;
 static constexpr uint8_t TAS58XX_MIXER_GAIN_SUBADDR = 0x18; // Left to Left = 0x18, Right to Left = 0x1c, Left to Right = 0x20, Right to Right = 0x24
 static constexpr uint8_t TAS58XX_CHANNEL_VOLUME_PAGE = 0x2A;
 static constexpr uint8_t TAS58XX_CHANNEL_VOLUME_SUBADDR[NUMBER_CHANNELS] = {0x24 , 0x28};  // Left channel = 0x24, Right Channel = 0x28
-#elif USE_TAS5815_DAC
+#elif defined(USE_TAS5815_DAC)
 // TAS5815
 static constexpr uint8_t TAS58XX_MIXER_GAIN_PAGE = 0x29;
 static constexpr uint8_t TAS58XX_MIXER_GAIN_SUBADDR = 0x18; // Left to Left = 0x18, Right to Left = 0x1c, Left to Right = 0x20, Right to Right = 0x24
@@ -170,7 +170,7 @@ struct AddressSequence {
 	    { 0x28, 0x7c }, // BQ15 Right - Frequency: 16000 Hz
   };
 
-#elif USE_TAS5815_DAC
+#elif defined(USE_TAS5815_DAC)
   static constexpr AddressSequence TAS5815_LEFT_EQ_ADDRESS[NUMBER_EQ_BANDS] = {
 	    { 0x24, 0x18 }, // BQ1 Left  - Frequency: 20 Hz
 	    { 0x24, 0x2c }, // BQ2 Left  - Frequency: 31.5 Hz

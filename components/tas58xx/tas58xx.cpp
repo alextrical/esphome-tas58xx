@@ -9,7 +9,7 @@ namespace esphome::tas58xx {
 
 #ifdef USE_TAS5805M_DAC
 static constexpr const char* TAG = "tas5805m";
-#elif USE_TAS5815_DAC
+#elif defined(USE_TAS5815_DAC)
 static constexpr const char* TAG = "tas5815";
 #else
 static constexpr const char* TAG = "tas5825m";
@@ -234,7 +234,7 @@ void Tas58xxComponent::update() {
 void Tas58xxComponent::dump_config() {
 #ifdef USE_TAS5805M_DAC
   ESP_LOGCONFIG(TAG, "Tas5805m Audio Dac:");
-#elif USE_TAS5815_DAC
+#elif defined(USE_TAS5815_DAC)
   ESP_LOGCONFIG(TAG, "Tas5815 Audio Dac:");
 #else
   ESP_LOGCONFIG(TAG, "Tas5825m Audio Dac:");
@@ -458,7 +458,7 @@ bool Tas58xxComponent::set_eq_gain(Channels channel, uint8_t band_index, int8_t 
   #else
   const AddressSequence* eq_address = &TAS5805M_LEFT_EQ_ADDRESS[band_index];
   #endif
-#elif USE_TAS5815_DAC
+#elif defined(USE_TAS5815_DAC)
   #ifdef USE_TAS58XX_EQ_BIAMP
   const AddressSequence* eq_address = (channel == LEFT_CHANNEL) ? &TAS5815_LEFT_EQ_ADDRESS[band_index] : &TAS5815_RIGHT_EQ_ADDRESS[band_index];
   #else
@@ -509,7 +509,7 @@ bool Tas58xxComponent::set_eq_preset(Channels channel, uint8_t select_preset) {
   const AddressSequence* biquad1_address = (channel == LEFT_CHANNEL) ? &TAS5805M_LEFT_EQ_ADDRESS[0] : &TAS5805M_RIGHT_EQ_ADDRESS[0];
   const AddressSequence* biquad2_address = (channel == LEFT_CHANNEL) ? &TAS5805M_LEFT_EQ_ADDRESS[1] : &TAS5805M_RIGHT_EQ_ADDRESS[1];
   const AddressSequence* biquad3_address = (channel == LEFT_CHANNEL) ? &TAS5805M_LEFT_EQ_ADDRESS[2] : &TAS5805M_RIGHT_EQ_ADDRESS[2];
-#elif USE_TAS5815_DAC
+#elif defined(USE_TAS5815_DAC)
   const AddressSequence* biquad1_address = (channel == LEFT_CHANNEL) ? &TAS5815_LEFT_EQ_ADDRESS[0] : &TAS5815_RIGHT_EQ_ADDRESS[0];
   const AddressSequence* biquad2_address = (channel == LEFT_CHANNEL) ? &TAS5815_LEFT_EQ_ADDRESS[1] : &TAS5815_RIGHT_EQ_ADDRESS[1];
   const AddressSequence* biquad3_address = (channel == LEFT_CHANNEL) ? &TAS5815_LEFT_EQ_ADDRESS[2] : &TAS5815_RIGHT_EQ_ADDRESS[2];
@@ -739,7 +739,7 @@ bool Tas58xxComponent::set_eq_mode_(EqMode new_mode) {
     ESP_LOGW(TAG, "%s writing Eq Mode: %s", ERROR, EQ_MODE_TEXT[new_mode]);
     return false;
   }
-#elif USE_TAS5815_DAC
+#elif defined(USE_TAS5815_DAC)
   if (!this->tas58xx_write_byte_(TAS5815_DSP_MISC, TAS5815_CTRL_EQ[new_mode])) { //??
     ESP_LOGW(TAG, "%s writing Eq Mode: %s", ERROR, EQ_MODE_TEXT[new_mode]);
     return false;
